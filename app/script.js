@@ -60,7 +60,7 @@ $btnDetectar.addEventListener("click", () => {
   worker
     .recognize(archivos[0], 'spa')
     .progress(p => {
-      $estado.innerHTML += <br><strong>Estado: ${p.status}</strong> (${p.progress * 100} % );
+      $estado.innerHTML += `<br><strong>Estado: ${p.status}</strong> (${p.progress * 100} % )`;
     })
     .then((result) => {
       const textoOriginal = result.text;
@@ -73,8 +73,8 @@ $btnDetectar.addEventListener("click", () => {
       // Resaltar palabras prohibidas en el texto detectado
       let textoResaltado = textoOriginal;
       palabrasProhibidas.forEach(palabra => {
-        const regex = new RegExp((${palabra}), 'gi');
-        textoResaltado = textoResaltado.replace(regex, <span class="resaltado">$1</span>);
+        const regex = new RegExp(`(${palabra})`, 'gi');
+        textoResaltado = textoResaltado.replace(regex, `<span class="resaltado">$1</span>`);
       });
 
       $estado.innerHTML = `
